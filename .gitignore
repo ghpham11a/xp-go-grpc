@@ -1,0 +1,51 @@
+# -----------------------------------------------------------------------------
+# Go build artifacts
+# -----------------------------------------------------------------------------
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+
+# Output directories for compiled binaries (if you have them)
+bin/
+out/
+
+# Coverage data
+*.coverprofile
+
+# -----------------------------------------------------------------------------
+# Vendor directory (if you are NOT checking in vendored dependencies)
+# -----------------------------------------------------------------------------
+vendor/
+
+# -----------------------------------------------------------------------------
+# OS / IDE / Editor junk
+# -----------------------------------------------------------------------------
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# VSCode
+.vscode/
+
+# GoLand / IntelliJ
+.idea/
+
+# Vim / Emacs swap files
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# -----------------------------------------------------------------------------
+# Optional: If you generate proto stubs and DON'T want to commit them,
+# you could exclude them (commented out by default):
+# -----------------------------------------------------------------------------
+# proto/*.pb.go
+# proto/*.pb.gw.go

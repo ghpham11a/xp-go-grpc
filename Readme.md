@@ -1,6 +1,10 @@
 # 1. Initialize project
 
 ```
+export PATH="$PATH:$(go env GOPATH)/bin"
+```
+
+```
 go mod init xp-go-grpc
 go mod tidy
 ```
@@ -23,13 +27,18 @@ make sure Go sees where you installed the binaries
 
 Compile protobuf files
 
+
+Generate protobuf files for Client and server seperatly 
+
 ```
 protoc \
+  -I=. \
+  -I=/Users/user/Documents/googleapis \
   --go_out=. \
-  --go-grpc_out=. \
   --go_opt=paths=source_relative \
+  --go-grpc_out=. \
   --go-grpc_opt=paths=source_relative \
-  proto/helloworld.proto
+  proto/accounts.proto
 ```
 
 # 2. Run project

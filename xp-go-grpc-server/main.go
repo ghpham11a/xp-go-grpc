@@ -7,20 +7,24 @@ import (
 	"net"
 
 	// Import the generated protobuf package
-	pb "xp-go-grpc/proto"
+	pb "xp-go-grpc-server/proto"
 
 	"google.golang.org/grpc"
 )
 
 // server is used to implement helloworld.GreeterServer.
 type server struct {
-	pb.UnimplementedGreeterServer
+	pb.UnimplementedAccountsServiceServer
 }
 
-// SayHello implements helloworld.GreeterServer
-func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-	log.Printf("Received request for name=%s", in.GetName())
-	return &pb.HelloReply{Message: "Hello " + in.GetName()}, nil
+func (s *server) CreateAccountRPC(ctx context.Context, in *pb.Account) (*pb.Account, error) {
+	log.Printf("Received request for account number=%s", in.GetAccountNumber())
+	return &pb.Account{AccountNumber: in.GetAccountNumber()}, nil
+}
+
+func (s *server) GetAccountRPC(ctx context.Context, in *pb.Account) (*pb.Account, error) {
+	log.Printf("Received request for account number=%s", in.GetAccountNumber())
+	return &pb.Account{AccountNumber: in.GetAccountNumber()}, nil
 }
 
 func main() {
@@ -35,7 +39,7 @@ func main() {
 	s := grpc.NewServer()
 
 	// Register our service implementation with the gRPC server
-	pb.RegisterGreeterServer(s, &server{})
+	pb.RegisterAccountsServiceServer(s, &server{})
 
 	fmt.Println("Server listening at port :50051")
 	if err := s.Serve(lis); err != nil {

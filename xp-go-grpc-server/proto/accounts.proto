@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package accountsPackage;
+
+option go_package = "xp-go-grpc/server/proto;accountsPackage";
+
+import "google/protobuf/timestamp.proto";
+import "google/type/date.proto";
+
+service AccountsService {
+    rpc createAccountRPC(Account) returns (Account);
+    rpc readAccountsRPC(void) returns (Accounts);
+}
+
+message void {}
+
+message Accounts {
+    repeated Account accounts = 1;
+}
+
+message Account {
+    // Unique identifier
+    int32 id = 1;
+  
+    // Email address
+    string email = 2;
+  
+    // Date of birth (year, month, day only)
+    google.type.Date date_of_birth = 3;
+  
+    // Account number
+    string account_number = 4;
+  
+    // Balance stored as a string to preserve precision
+    string balance = 5;
+  
+    // Timestamp representing when the account was created
+    google.protobuf.Timestamp created_at = 6;
+}

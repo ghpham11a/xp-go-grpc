@@ -47,5 +47,5 @@ desktop.ini
 # Optional: If you generate proto stubs and DON'T want to commit them,
 # you could exclude them (commented out by default):
 # -----------------------------------------------------------------------------
-# proto/*.pb.go
-# proto/*.pb.gw.go
+*.pb.go
+*.pb.gw.go

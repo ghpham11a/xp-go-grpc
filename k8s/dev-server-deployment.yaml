@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xp-go-grpc-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xp-go-grpc-server
+  template:
+    metadata:
+      labels:
+        app: xp-go-grpc-server
+    spec:
+      containers:
+      - name: xp-go-grpc-server
+        imagePullPolicy: Never
+        image: xp-go-grpc-server:latest
+        ports:
+        - containerPort: 50051
+        env:
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name

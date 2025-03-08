@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xp-go-grpc-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xp-go-grpc-client
+  template:
+    metadata:
+      labels:
+        app: xp-go-grpc-client
+    spec:
+      containers:
+      - name: xp-go-grpc-client
+        imagePullPolicy: Never
+        image: xp-go-grpc-client:latest
+        ports:
+        - containerPort: 8080
+        envFrom:
+          - configMapRef:
+              name: xp-go-grpc-client-configmap
+        env:
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name

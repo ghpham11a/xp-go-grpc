@@ -1,3 +1,18 @@
+# Usage
+
+POST
+
+```
+{
+  "id": 1,
+  "email": "john.doe@example.com",
+  "dateOfBirth": "1985-07-13",
+  "accountNumber": "ACCT-12345-XYZ",
+  "balance": 1234.56,
+  "createdAt": "2025-03-07T10:25:00"
+}
+```
+
 # 1. Initialize project
 
 ```

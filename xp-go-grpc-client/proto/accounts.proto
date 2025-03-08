@@ -2,38 +2,63 @@ syntax = "proto3";
 
 package accountsPackage;
 
+// In Go, this ensures generated code is placed in
+// "xp-go-grpc/client/proto", with the package name "accountsPackage".
 option go_package = "xp-go-grpc/client/proto;accountsPackage";
 
 import "google/protobuf/timestamp.proto";
 import "google/type/date.proto";
 
 service AccountsService {
-    rpc createAccountRPC(Account) returns (Account);
-    rpc readAccountsRPC(void) returns (Accounts);
+  // Create
+  rpc CreateAccountRPC(Account) returns (Account);
+
+  // Read all
+  rpc ReadAccountsRPC(Void) returns (Accounts);
+
+  // Read single
+  rpc ReadAccountRPC(ReadAccountRequest) returns (Account);
+
+  // Update
+  rpc UpdateAccountRPC(Account) returns (Account);
+
+  // Delete
+  rpc DeleteAccountRPC(DeleteAccountRequest) returns (Void);
 }
 
-message void {}
+// A "no data" message, used for empty requests or responses.
+message Void {}
+
+// Request to read a single account by ID
+message ReadAccountRequest {
+  int32 id = 1;
+}
+
+// Request to delete a single account by ID
+message DeleteAccountRequest {
+  int32 id = 1;
+}
 
 message Accounts {
-    repeated Account accounts = 1;
+  repeated Account accounts = 1;
 }
 
 message Account {
-    // Unique identifier
-    int32 id = 1;
-  
-    // Email address
-    string email = 2;
-  
-    // Date of birth (year, month, day only)
-    google.type.Date date_of_birth = 3;
-  
-    // Account number
-    string account_number = 4;
-  
-    // Balance stored as a string to preserve precision
-    string balance = 5;
-  
-    // Timestamp representing when the account was created
-    google.protobuf.Timestamp created_at = 6;
+  // Unique identifier
+  int32 id = 1;
+
+  // Email address
+  string email = 2;
+
+  // Date of birth (year, month, day only)
+  google.type.Date date_of_birth = 3;
+
+  // Account number
+  string account_number = 4;
+
+  // Balance stored as a string to preserve precision
+  string balance = 5;
+
+  // Timestamp representing when the account was created
+  google.protobuf.Timestamp created_at = 6;
 }

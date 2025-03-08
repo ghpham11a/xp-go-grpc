@@ -4,9 +4,8 @@ import (
 	"time"
 )
 
-// Account represents the "accounts" table structure in Cassandra.
 type Account struct {
-	ID            string    `json:"id"` // PRIMARY KEY in Cassandra
+	ID            string    `json:"id"`
 	Email         string    `json:"email"`
 	DateOfBirth   time.Time `json:"date_of_birth"`
 	AccountNumber string    `json:"account_number"`

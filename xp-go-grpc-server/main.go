@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"log"
 	"net"
@@ -15,16 +14,6 @@ import (
 // server is used to implement helloworld.GreeterServer.
 type server struct {
 	pb.UnimplementedAccountsServiceServer
-}
-
-func (s *server) CreateAccountRPC(ctx context.Context, in *pb.Account) (*pb.Account, error) {
-	log.Printf("Received request for account number=%s", in.GetAccountNumber())
-	return &pb.Account{AccountNumber: in.GetAccountNumber()}, nil
-}
-
-func (s *server) GetAccountRPC(ctx context.Context, in *pb.Account) (*pb.Account, error) {
-	log.Printf("Received request for account number=%s", in.GetAccountNumber())
-	return &pb.Account{AccountNumber: in.GetAccountNumber()}, nil
 }
 
 func main() {

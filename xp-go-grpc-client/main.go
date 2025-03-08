@@ -1,9 +1,9 @@
 package main
 
 import (
-	"context"
 	"log"
 	"net/http"
+	"os"
 
 	pb "xp-go-grpc-client/proto"
 
@@ -19,8 +19,10 @@ type App struct {
 
 func main() {
 
+	serverDNS := os.Getenv("GO_GRPC_SERVER_DNS")
+
 	// Set up a connection to the server.
-	conn, err := grpc.NewClient("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.NewClient(serverDNS, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
@@ -28,8 +30,6 @@ func main() {
 
 	// Create a new Account client.
 	ac := pb.NewAccountsServiceClient(conn)
-
-	ac.CreateAccountRPC(context.Background(), &pb.Account{AccountNumber: "1234567890"})
 
 	app := &App{AccountsClient: ac}
 

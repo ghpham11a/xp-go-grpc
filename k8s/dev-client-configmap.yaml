@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: xp-go-grpc-client-configmap
+data:
+  GO_GRPC_SERVER_DNS: "xp-go-grpc-server-service.default.svc.cluster.local:50051"

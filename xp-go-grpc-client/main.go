@@ -37,8 +37,7 @@ func main() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/accounts", app.CreateAccount).Methods("POST")
-	r.HandleFunc("/accounts", app.ReadAccount).Methods("GET")
-	r.HandleFunc("/accounts/{accountId}", app.ReadAccounts).Methods("GET")
+	r.HandleFunc("/accounts/{accountId}", app.ReadAccount).Methods("GET")
 	r.HandleFunc("/accounts/{accountId}", app.UpdateAccount).Methods("PUT")
 	r.HandleFunc("/accounts/{accountId}", app.DeleteAccount).Methods("DELETE")
 

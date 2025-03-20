@@ -18,7 +18,25 @@ spec:
         image: xp-go-grpc-server:latest
         ports:
         - containerPort: 50051
+        envFrom:
+          - configMapRef:
+              name: xp-go-grpc-server-configmap
         env:
+          - name: POSTGRES_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: xp-go-grpc-server-secrets
+                key: POSTGRES_DATABASE
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: xp-go-grpc-server-secrets
+                key: POSTGRES_USER
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: xp-go-grpc-server-secrets
+                key: POSTGRES_PASSWORD
           - name: POD_NAME
             valueFrom:
               fieldRef:

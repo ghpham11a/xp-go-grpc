@@ -3,8 +3,8 @@ syntax = "proto3";
 package accountsPackage;
 
 // In Go, this ensures generated code is placed in
-// "xp-go-grpc/client/proto", with the package name "accountsPackage".
-option go_package = "xp-go-grpc/client/proto;accountsPackage";
+// "xp-go-grpc/server/proto", with the package name "accountsPackage".
+option go_package = "xp-go-grpc/server/proto;accountsPackage";
 
 import "google/protobuf/timestamp.proto";
 import "google/type/date.proto";
@@ -23,7 +23,7 @@ service AccountsService {
   rpc UpdateAccountRPC(Account) returns (Account);
 
   // Delete
-  rpc DeleteAccountRPC(DeleteAccountRequest) returns (Void);
+  rpc DeleteAccountRPC(DeleteAccountRequest) returns (DeleteAccountResponse);
 }
 
 // A "no data" message, used for empty requests or responses.
@@ -37,6 +37,10 @@ message ReadAccountRequest {
 // Request to delete a single account by ID
 message DeleteAccountRequest {
   int32 id = 1;
+}
+
+message DeleteAccountResponse {
+  bool success = 1;
 }
 
 message Accounts {

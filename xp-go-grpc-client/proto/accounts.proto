@@ -23,7 +23,7 @@ service AccountsService {
   rpc UpdateAccountRPC(Account) returns (Account);
 
   // Delete
-  rpc DeleteAccountRPC(DeleteAccountRequest) returns (Void);
+  rpc DeleteAccountRPC(DeleteAccountRequest) returns (DeleteAccountResponse);
 }
 
 // A "no data" message, used for empty requests or responses.
@@ -37,6 +37,10 @@ message ReadAccountRequest {
 // Request to delete a single account by ID
 message DeleteAccountRequest {
   int32 id = 1;
+}
+
+message DeleteAccountResponse {
+  bool success = 1;
 }
 
 message Accounts {
